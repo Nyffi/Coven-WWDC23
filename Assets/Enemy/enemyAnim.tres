@@ -1,0 +1,80 @@
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://bd5c8tv4gjdhj"]
+
+[ext_resource type="Texture2D" uid="uid://crow37lxt42pm" path="res://Assets/Enemy/boss/0.png" id="1_dct7h"]
+[ext_resource type="Texture2D" uid="uid://cb5qymcfhpmyg" path="res://Assets/Enemy/boss/1.png" id="2_qdqhk"]
+[ext_resource type="Texture2D" uid="uid://dfo74bb5ot8v" path="res://Assets/Enemy/boss/2.png" id="3_uh4jw"]
+[ext_resource type="Texture2D" uid="uid://d0tmw7iytpsjw" path="res://Assets/Enemy/boss/3.png" id="4_wess2"]
+[ext_resource type="Texture2D" uid="uid://77650mtioo6" path="res://Assets/Enemy/boss/4.png" id="5_jf3yp"]
+[ext_resource type="Texture2D" uid="uid://xx6qp3hcxqsq" path="res://Assets/Enemy/heavyFairy/0.png" id="6_2ql2l"]
+[ext_resource type="Texture2D" uid="uid://dla6cpdu1qget" path="res://Assets/Enemy/heavyFairy/1.png" id="7_maw8k"]
+[ext_resource type="Texture2D" uid="uid://c8usep8sm13nh" path="res://Assets/Enemy/heavyFairy/2.png" id="8_aator"]
+[ext_resource type="Texture2D" uid="uid://cds1vwae58h4p" path="res://Assets/Enemy/heavyFairy/3.png" id="9_6b78c"]
+[ext_resource type="Texture2D" uid="uid://cexllg5b5msyk" path="res://Assets/Enemy/heavyFairy/4.png" id="10_ho6b2"]
+[ext_resource type="Texture2D" uid="uid://16limc463kds" path="res://Assets/Enemy/lightFairy/0.png" id="11_2kyrj"]
+[ext_resource type="Texture2D" uid="uid://cj1jcf0pb0eok" path="res://Assets/Enemy/lightFairy/1.png" id="12_fuad5"]
+[ext_resource type="Texture2D" uid="uid://b20wxgll3haa3" path="res://Assets/Enemy/lightFairy/2.png" id="13_2x58s"]
+[ext_resource type="Texture2D" uid="uid://bfx2hxtc6ru64" path="res://Assets/Enemy/lightFairy/3.png" id="14_20cx3"]
+[ext_resource type="Texture2D" uid="uid://qbdk1esvjq3j" path="res://Assets/Enemy/lightFairy/4.png" id="15_l4acn"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dct7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qdqhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uh4jw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wess2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jf3yp")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2ql2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_maw8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aator")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6b78c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ho6b2")
+}],
+"loop": true,
+"name": &"fairyHeavy",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2kyrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fuad5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2x58s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_20cx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_l4acn")
+}],
+"loop": true,
+"name": &"fairyLight",
+"speed": 8.0
+}]

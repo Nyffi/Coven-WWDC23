@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://dv5ffb7qil0iq"]
+
+[ext_resource type="Script" path="res://Scripts/CharMov.cs" id="1_adla0"]
+[ext_resource type="Texture2D" uid="uid://ds75ne0up4ao3" path="res://Assets/player.png" id="2_twf0x"]
+[ext_resource type="Shape2D" uid="uid://6ir01qv83a5f" path="res://Hitboxes/player_death_hb_radius.tres" id="3_r6mlj"]
+[ext_resource type="Shape2D" uid="uid://cpk0myhr3j073" path="res://Hitboxes/player_graze_hb_radius.tres" id="4_aunum"]
+[ext_resource type="Texture2D" uid="uid://cmtdjy4pj2d55" path="res://Assets/gameBG.png" id="5_pt38j"]
+[ext_resource type="Script" path="res://Scripts/BackgroundAnimationScript.cs" id="6_c6rrx"]
+[ext_resource type="Script" path="res://Scripts/EnemyManager.cs" id="7_p6w5v"]
+
+[sub_resource type="Animation" id="Animation_fkt55"]
+resource_name = "bg_movement"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(365, 0), Vector2(365, 960)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbm8d"]
+_data = {
+"bg_movement": SubResource("Animation_fkt55")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(351, 791)
+script = ExtResource("1_adla0")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_twf0x")
+
+[node name="DeathHitbox" type="CollisionShape2D" parent="Player"]
+shape = ExtResource("3_r6mlj")
+debug_color = Color(0.929412, 0.231373, 0.34902, 0.419608)
+
+[node name="GrazeHitbox" type="CollisionShape2D" parent="Player"]
+scale = Vector2(2.75, 2.75)
+shape = ExtResource("4_aunum")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -999
+position = Vector2(365, 0)
+texture = ExtResource("5_pt38j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+libraries = {
+"": SubResource("AnimationLibrary_hbm8d")
+}
+script = ExtResource("6_c6rrx")
+
+[node name="EnemyManager" type="Node2D" parent="."]
+script = ExtResource("7_p6w5v")
