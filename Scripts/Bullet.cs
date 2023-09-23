@@ -55,7 +55,10 @@ public partial class Bullet : Sprite2D
 
 		Position = new Vector2(Position.X + dirX * travelSpeed, Position.Y + dirY * travelSpeed);
 
-		despawn = (Position.X > 750) || (Position.X < -30) || (Position.Y > 990) || (Position.Y < -30);
+		if ((Position.X > 750) | (Position.X < -30) | (Position.Y > 990) | (Position.Y < -30)) {
+			OnTimerTimeout();
+		}
+			
 	}
 
 	float xDir(float angle)
@@ -72,8 +75,10 @@ public partial class Bullet : Sprite2D
 
 	public void OnTimerTimeout()
 	{
+		timer.Stop();
 		despawn = true;
-		QueueFree();
+		this.GetParent().RemoveChild(this);
+		this.QueueFree();
 	}
 
 	// Called when the node enters the scene tree for the first time.

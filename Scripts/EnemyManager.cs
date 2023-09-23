@@ -8,6 +8,7 @@ public partial class EnemyManager : Node2D
 {
 	private List<Fairy> fairies = new List<Fairy>();
 	//TODO: Put Boss here
+	private Fairy test = new Fairy(fairyClass: FairyClass.Light, SpawnerPresets.GetInstance().hell);
 
 	private EnemyManager() 
 	{ 
@@ -35,11 +36,13 @@ public partial class EnemyManager : Node2D
 				this.fairies.Add(heavy);
 
 				auxX += 80;
+				
 			}
 			auxX = 30;
 			auxY += 120;
 		}
-
+		test.Position = new Vector2(350, 40);
+		AddChild(test);
 		// TODO: Boss setup & logic
 	}
 	private static EnemyManager _instance;

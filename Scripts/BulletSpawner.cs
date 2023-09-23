@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public partial class BulletSpawner : Node2D
 {
@@ -40,6 +41,11 @@ public partial class BulletSpawner : Node2D
 	float bulletAcceleration = 0.0f;
 	float bulletCurve = 0.0f;
 	int bulletTTL = 10;
+
+	// Clear Timer
+	System.Threading.Timer timer;
+	double time = 0;
+	const double timePeriod = 1;
 
 	public void updateConfigData(BulletSpawnerConfig config)
 	{
@@ -104,6 +110,16 @@ public partial class BulletSpawner : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//TimerCallback callback = new TimerCallback(ClearBulletArray);
+		//this.timer = new System.Threading.Timer(callback, null, 0, 500);
+	}
+
+	private void ClearBulletArray(Object stateInfo) 
+	{
+		//List<Bullet> despawnArray = this.bulletArray.FindAll(bullet => bullet.despawn);
+		//despawnArray.ForEach(b => b.QueueFree());
+		Callable.From(() => bulletArray.RemoveAll(bullet => bullet.despawn)).CallDeferred();
+		//GD.Print("Cleared some boolets :) " + DateTime.Now.ToString("h:mm:ss"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -140,14 +156,24 @@ public partial class BulletSpawner : Node2D
 					spinModificator = -spinModificator;
 		}
 
-		List<Bullet> despawnArray = bulletArray.FindAll(bullet => bullet.despawn);
-		despawnArray.ForEach(b => b.QueueFree());
-		bulletArray.RemoveAll(bullet => bullet.despawn);
-
-		bulletArray.ForEach(bullet => bullet.updatePos());
+		//bulletArray.ForEach(bullet => bullet.updatePos());
+		foreach (Bullet bullet in bulletArray)
+		{
+			if (!bullet.despawn)
+				bullet.updatePos();
+		}
 
 		shoot += 1;
 		if (shoot >= fireRate)
 			shoot = 0;
+
+		time += delta;
+
+		if (time > timePeriod)
+		{
+			int lixo = bulletArray.RemoveAll(bullet => bullet.despawn);
+			time = 0;
+			GD.Print("Array has been cleared. " + lixo + " bullets removed.");
+		}
 	}
 }
