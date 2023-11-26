@@ -8,6 +8,7 @@ public class SpawnerPresets
     public BulletSpawnerConfig lightFairy;
     public BulletSpawnerConfig heavyFairy;
     public BulletSpawnerConfig boss;
+	public BulletSpawnerConfig hell;
 
     // Refactor suggestion: Put all data on a JSON file and read it from there instead.
     private SpawnerPresets()
@@ -116,6 +117,27 @@ public class SpawnerPresets
 		boss.bulletAcceleration = 0.005f;
 		boss.bulletCurve = 0;
 		boss.bulletTTL = 15;
+
+		this.hell = new BulletSpawnerConfig();
+		hell.texture = BulletType.light;
+		hell.spriteSpin = SpriteSpinEnum.None;
+		hell.ownerIsPlayer = false;
+		hell.patternArrays = 5;
+		hell.bulletsPerArray = 2;
+		hell.spreadBetweenArray = 15;
+		hell.spreadWithinArray = 5;
+		hell.startAngle = 225;
+		hell.spinRate = 0;
+		hell.spinModificator = 1;
+		hell.invertSpin = true;
+		hell.maxSpinRate = 5;
+		hell.fireRate = 5;
+		hell.objectWidth = 1;
+		hell.objectHeight = 1;
+		hell.bulletSpeed = 2f;
+		hell.bulletAcceleration = 0f;
+		hell.bulletCurve = 0;
+		hell.bulletTTL = 5;
     }
 
     public static SpawnerPresets GetInstance()

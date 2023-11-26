@@ -53,11 +53,13 @@ public partial class Fairy : Node2D, Enemy
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+		AddChild(mainSpawner);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		mainSpawner.Position = this.Position;
 	}
 
     public void updateSpawner(BulletSpawnerConfig main)
