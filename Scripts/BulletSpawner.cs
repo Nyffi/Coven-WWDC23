@@ -64,6 +64,33 @@ public partial class BulletSpawner : Node2D
 		this.bulletTTL = config.bulletTTL;
 	}
 
+	public BulletSpawnerConfig fetchConfigData()
+	{
+		BulletSpawnerConfig data = new BulletSpawnerConfig();
+
+		data.ownerIsPlayer = this.ownerIsPlayer;
+		data.texture = this.texture;
+		data.spriteSpin = this.spriteSpin;
+		data.patternArrays = this.patternArrays;
+		data.bulletsPerArray = this.bulletsPerArray;
+		data.spreadBetweenArray = this.spreadBetweenArray;
+		data.spreadWithinArray = this.spreadWithinArray;
+		data.startAngle = this.startAngle;
+		data.spinRate = this.spinRate;
+		data.spinModificator = this.spinModificator;
+		data.invertSpin = this.invertSpin;
+		data.maxSpinRate = this.maxSpinRate;
+		data.fireRate = this.fireRate;
+		data.objectWidth = this.objectWidth;
+		data.objectHeight = this.objectHeight;
+		data.bulletSpeed = this.bulletSpeed;
+		data.bulletAcceleration = this.bulletAcceleration;
+		data.bulletCurve = this.bulletCurve;
+		data.bulletTTL = this.bulletTTL;
+
+		return data;
+	}
+
 	void calculation(int i, int j, float arrayAngle, float bulletAngle)
 	{
 		float angleCalc = defaultAngle + (bulletAngle * i);
@@ -78,12 +105,14 @@ public partial class BulletSpawner : Node2D
 		if (ownerIsPlayer)
 		{
 			bullet.Name = "pBullet(" + Guid.NewGuid().ToString() + ")";
-			// set the boolet bitmasks (or equivalent of)
+			bullet.hitboxArea.CollisionLayer = 4;
+			bullet.hitboxArea.CollisionMask = 8;
 		}
 		else
 		{
 			bullet.Name = "eBullet(" + Guid.NewGuid().ToString() + ")";
-			// set the boolet bitmasks (or equivalent of)
+			bullet.hitboxArea.CollisionLayer = 16;
+			bullet.hitboxArea.CollisionMask = 34;
 		}
 
 		GetTree().Root.AddChild(bullet);

@@ -3,6 +3,8 @@ using System;
 
 public partial class Bullet : Sprite2D
 {
+	// TODO: Deixar a associacao de collision layer e collision mask associada diretamente no metodo construtor em vez de deixar o Area2D publico
+	public Area2D hitboxArea;
 	CollisionShape2D hitbox;
 	SpriteSpinEnum rotationDir;
 
@@ -22,11 +24,15 @@ public partial class Bullet : Sprite2D
 		this.Texture = sprite;
 		this.rotationDir = rotationDir;
 
+		hitboxArea = new Area2D();
+		hitboxArea.Monitorable = true;
+		AddChild(hitboxArea);
+
 		hitbox = new CollisionShape2D();
 		CircleShape2D shape = new CircleShape2D();
 		shape.Radius = sprite.GetWidth() * 0.2f;
 		hitbox.Shape = shape;
-		AddChild(hitbox);
+		hitboxArea.AddChild(hitbox);
 
 		this.acceleration = acceleration;
 		this.direction = direction;

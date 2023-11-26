@@ -15,6 +15,8 @@ public partial class CharMov : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	public bool isInvulnerable = false;
+
 	public void GetInput()
 	{
 		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
@@ -58,10 +60,14 @@ public partial class CharMov : CharacterBody2D
 		Texture2D texture = BulletType.star;
 		Bullet bullet = new Bullet(texture, SpriteSpinEnum.Clockwise, 0, 0, 0, 0, 0, 0, 5);
 
-		bullet.Position = pos;
+		bullet.Position = new Vector2(pos.X + 50, pos.Y);
+		bullet.hitboxArea.CollisionLayer = 16;
+		bullet.hitboxArea.CollisionMask = 34;	// 2 e 6
 		
 		GetTree().Root.AddChild(bullet);
 		bullets.Add(bullet);
+
+		//_on_death_area_area_entered(new Area2D());
 
 		//Fairy fairy = new Fairy(FairyClass.Light);
 		//fairy.Position = new Vector2(400, 400);
@@ -113,5 +119,44 @@ public partial class CharMov : CharacterBody2D
 		flankSpawner.updateConfigData(SpawnerPresets.GetInstance().playerB);
 		AddChild(flankSpawner);
 	}
+
+	private async void _on_death_area_entered(Area2D area)
+	{
+		GD.Print("Tocou em algo");
+		if (isInvulnerable) { return; }
+
+		BulletSpawnerConfig mainData = mainSpawner.fetchConfigData();
+		BulletSpawnerConfig flankData = flankSpawner.fetchConfigData();
+
+		mainData.fireRate *= 3;
+		flankData.fireRate *= 3;
+
+		mainSpawner.updateConfigData(mainData);
+		flankSpawner.updateConfigData(flankData);
+
+		// Sprite flashes opacity for 2 seconds
+		AnimationPlayer teste = this.FindChild("AnimationPlayer") as AnimationPlayer;
+		teste.Play("tookDamage");
+
+		this.isInvulnerable = true;
+
+		await ToSignal(teste, "animation_finished");
+
+		mainData.fireRate /= 3;
+		flankData.fireRate /= 3;
+
+		mainSpawner.updateConfigData(mainData);
+		flankSpawner.updateConfigData(flankData);
+
+		this.isInvulnerable = false;
+	}
+
+	private void _on_graze_area_entered(Area2D area)
+	{
+		GD.Print("Tiro de raspao *carinha de chocado*");
+	}
 }
+
+
+
 
