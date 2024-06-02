@@ -1,4 +1,5 @@
 using Godot;
+using NathanHoad;
 using System;
 using System.Collections.Generic;
 
@@ -67,6 +68,8 @@ public partial class CharMov : CharacterBody2D
 		GetTree().Root.AddChild(bullet);
 		bullets.Add(bullet);
 
+		
+
 		//_on_death_area_area_entered(new Area2D());
 
 		//Fairy fairy = new Fairy(FairyClass.Light);
@@ -118,6 +121,13 @@ public partial class CharMov : CharacterBody2D
 
 		flankSpawner.updateConfigData(SpawnerPresets.GetInstance().playerB);
 		AddChild(flankSpawner);
+
+		//var manager = GetNode<AudioStreamManager>("/root/AudioStreamManager");
+		//manager.Play(Music.levelMusic);
+		//AudioStreamManager.Play(SoundEffects.graze);
+		//GD.Print(manager);
+		var music = GD.Load(Music.levelMusic) as AudioStream;
+		SoundManager.PlayMusic(music);
 	}
 
 	private async void _on_death_area_entered(Area2D area)
@@ -154,6 +164,8 @@ public partial class CharMov : CharacterBody2D
 	private void _on_graze_area_entered(Area2D area)
 	{
 		GD.Print("Tiro de raspao *carinha de chocado*");
+		var garai = GD.Load(SoundEffects.graze) as AudioStream;
+		SoundManager.PlaySound(garai);
 	}
 }
 

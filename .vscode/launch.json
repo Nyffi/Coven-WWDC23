@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run Godot",
+            "name": "Play (Mac)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -14,6 +14,37 @@
             "console": "internalConsole",
             "stopAtEntry": false,
             "args": ["--path", "${workspaceRoot}"]
+        },
+        {
+            "name": "Play",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "justMyCode": false,
+            
+        },
+        {
+            "name": "Play in Editor",
+            "type": "godot-mono",
+            "mode": "playInEditor",
+            "request": "launch"
+        },
+        {
+            "name": "Launch",
+            "type": "godot-mono",
+            "request": "launch",
+            "mode": "executable",
+            "preLaunchTask": "build",
+            "executable": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe",
+            // See which arguments are available here:
+            // https://docs.godotengine.org/en/stable/getting_started/editor/command_line_tutorial.html
+            "executableArguments": [
+                "--path",
+                "${workspaceRoot}"
+            ]
         }
     ]
 }

@@ -30,7 +30,7 @@ public partial class Bullet : Sprite2D
 
 		hitbox = new CollisionShape2D();
 		CircleShape2D shape = new CircleShape2D();
-		shape.Radius = sprite.GetWidth() * 0.2f;
+		shape.Radius = sprite.GetWidth() * 0.125f;
 		hitbox.Shape = shape;
 		hitboxArea.AddChild(hitbox);
 

@@ -27,6 +27,7 @@ public partial class EnemyManager : Node2D
 				light.ZIndex = -1;
 				// lmao code
 				this.fairies.Add(light);
+				AddChild(light);
 
 				Fairy heavy = new Fairy(FairyClass.Heavy, heavyPreset);
 				heavy.Position = new Vector2(auxX + 15, auxY);
@@ -34,6 +35,7 @@ public partial class EnemyManager : Node2D
 				heavy.ZIndex = -1;
 				// lmao more code
 				this.fairies.Add(heavy);
+				AddChild(heavy);
 
 				auxX += 80;
 				
@@ -42,7 +44,7 @@ public partial class EnemyManager : Node2D
 			auxY += 120;
 		}
 		test.Position = new Vector2(350, 40);
-		AddChild(test);
+		//AddChild(test);
 		// TODO: Boss setup & logic
 	}
 	private static EnemyManager _instance;
@@ -51,6 +53,11 @@ public partial class EnemyManager : Node2D
 		if (_instance == null)
 			_instance = new EnemyManager();
 		return _instance;
+	}
+
+	private void SpawnCommonEnemies(int max)
+	{
+		
 	}
 
 	// Called when the node enters the scene tree for the first time.

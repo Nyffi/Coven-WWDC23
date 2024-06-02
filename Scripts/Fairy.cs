@@ -12,16 +12,20 @@ public partial class Fairy : Node2D, Enemy
     public bool canTakeDamage { get; set; }
     public bool canShoot { get; set; }
     public bool isActive { get; set; }
+	public Area2D hitboxArea { get; set; }
     public CollisionShape2D hitbox { get; set; }
     public AnimatedSprite2D sprite { get; set; }
     
 	public Fairy(FairyClass fairyClass, BulletSpawnerConfig config)
 	{
+		// Initialize variables and load animation tree
 		this.sprite = new AnimatedSprite2D();
 		this.sprite.SpriteFrames = GD.Load("res://Assets/Enemy/enemyAnim.tres") as SpriteFrames;
 		this.hitbox = new CollisionShape2D();
+		this.hitboxArea = new Area2D();
 		RectangleShape2D rect = new RectangleShape2D();
 
+		// Associate the right animation set and health bar according to the enemy's class
 		switch (fairyClass)
 		{
 			case FairyClass.Light:
@@ -39,8 +43,13 @@ public partial class Fairy : Node2D, Enemy
 		rect.Size *= new Vector2(0.65f, 0.8f);
 		this.hitbox.Shape = rect;
 		this.sprite.Play();
+
+		this.hitboxArea.CollisionLayer = 8;	// Bit 4
+		this.hitboxArea.CollisionMask = 4;	// Bit 3
+
+		this.hitboxArea.AddChild(hitbox);
+		AddChild(hitboxArea);
 		AddChild(sprite);
-		AddChild(hitbox);
 
 		this.mainSpawner = new BulletSpawner();
 		this.mainSpawner.updateConfigData(config);
