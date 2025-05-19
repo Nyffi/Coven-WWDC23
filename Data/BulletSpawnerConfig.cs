@@ -42,34 +42,31 @@ public class BulletSpawnerConfig
     public void LoadFromData(string key)
     {
         DanmakuData data = DanmakuPatterns.Instance.FetchDanmakuData(key);
-        BulletSpawnerConfig config = new BulletSpawnerConfig();
 
-        Texture2D texture;
         switch (data.Texture)
         {
             case "common":
-                texture = BulletType.Common;
+                this.Texture = BulletType.Common;
                 break;
             case "dart":
-                texture = BulletType.Dart;
+                this.Texture = BulletType.Dart;
                 break;
             case "star":
-                texture = BulletType.Star;
+                this.Texture = BulletType.Star;
                 break;
             case "light":
-                texture = BulletType.Light;
+                this.Texture = BulletType.Light;
                 break;
             case "heavy":
-                texture = BulletType.Heavy;
+                this.Texture = BulletType.Heavy;
                 break;
             default:
-                texture = BulletType.Common;
+                this.Texture = BulletType.Common;
                 break;
         }
-        config.Texture = texture;
         Enum.TryParse(data.SpriteSpin, out this.SpriteSpin);
         
-        GD.Print("bazinga");
+        GD.Print(this.SpriteSpin);
     }
     
     

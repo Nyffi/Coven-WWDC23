@@ -21,10 +21,10 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_ja4e4")
-debug_color = Color(0.804108, 0, 0.142745, 0.42)
+debug_color = Color(0.803922, 0, 0.141176, 0.772549)
 
 [node name="GrazeArea" type="Area2D" parent="."]
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeArea"]

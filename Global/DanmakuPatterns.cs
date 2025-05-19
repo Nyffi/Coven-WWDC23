@@ -12,21 +12,26 @@ public partial class DanmakuPatterns : Node
 {
 	private Json _patterns = ResourceLoader.Load<Json>("res://Data/Patterns.json");
 	private Dictionary<string, DanmakuData> PatternData;
-	private static DanmakuPatterns _instance;
+	//private static DanmakuPatterns _instance;
 
-	public static DanmakuPatterns Instance
-	{
-		get
-		{
-			if (_instance == null)
-				_instance = (DanmakuPatterns)Engine.GetSingleton("DanmakuPatterns");
-			return _instance;
-		}
-	}
+	// public static DanmakuPatterns Instance
+	// {
+	// 	get
+	// 	{
+	// 		if (_instance == null)
+	// 			GD.Print(Engine.GetSingletonList());
+	// 			_instance = (DanmakuPatterns)Engine.GetSingleton("DanmakuPatterns");
+	// 		return _instance;
+	// 	}
+	// }
+	
+	public static DanmakuPatterns Instance { get; private set; }
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Instance = this;
+		
 		GD.Print("Loading DanmakuPatterns...");
 		Dictionary<string, DanmakuData> data = new Dictionary<string, DanmakuData>();
 		try

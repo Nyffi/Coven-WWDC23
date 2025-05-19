@@ -7,7 +7,10 @@ namespace CovenWWDC23Port.Scenes;
 
 public partial class Danmaku : Node2D
 {
-	private bool _enabled = false;
+	private bool _enabled = true;
+	
+	// [Export(PropertyHint.Enum, BulletType)]
+	// public string bulletType;
 	
 	private Texture2D _texture;
 	private SpriteSpinEnum _spriteSpin = SpriteSpinEnum.None;
@@ -53,8 +56,8 @@ public partial class Danmaku : Node2D
 	public void updateConfigData(BulletSpawnerConfig config)
 	{
 		// this._ownerIsPlayer = config.OwnerIsPlayer;
-		// this._texture = config.Texture;
-		// this._spriteSpin = config.SpriteSpin;
+		this._texture = config.Texture;
+		this._spriteSpin = config.SpriteSpin;
 		// this._patternArrays = config.PatternArrays;
 		// this._bulletsPerArray = config.BulletsPerArray;
 		// this._spreadBetweenArray = config.SpreadBetweenArray;
@@ -104,6 +107,7 @@ public partial class Danmaku : Node2D
 	{
 		BulletSpawnerConfig data = new BulletSpawnerConfig();
 		data.LoadFromData("playerA");
+		updateConfigData(data);
 	}
 	
 	void calculation(int i, int j, float arrayAngle, float bulletAngle)
@@ -142,11 +146,15 @@ public partial class Danmaku : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		SelectPreMadeBulletPattern("playerA");
+		GD.Print(this.GetParent().Name);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		this.Position = this.GetOwner<Node2D>().Position;
+		
 		if (_enabled)
 		{
 			int bulletLength = _bulletsPerArray - 1;
