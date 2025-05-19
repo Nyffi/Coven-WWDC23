@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckofoi2lqttun"]
+[gd_scene load_steps=5 format=3 uid="uid://ckofoi2lqttun"]
 
-[ext_resource type="Script" path="res://Scenes/Player.cs" id="1_2j84s"]
+[ext_resource type="Script" uid="uid://by0x8jflfyid0" path="res://Scenes/Player.cs" id="1_2j84s"]
 [ext_resource type="Texture2D" uid="uid://ceax2lmebdg8g" path="res://Assets/Sprites/player.png" id="1_122ew"]
+[ext_resource type="PackedScene" uid="uid://t01oqwffd226" path="res://Scenes/danmaku.tscn" id="3_1phtg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja4e4"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("_main", "_second")]
 script = ExtResource("1_2j84s")
+_main = NodePath("Main Danmaku")
+_second = NodePath("Sub Danmaku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -26,6 +29,10 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeArea"]
 shape = SubResource("CircleShape2D_ja4e4")
+
+[node name="Main Danmaku" parent="." instance=ExtResource("3_1phtg")]
+
+[node name="Sub Danmaku" parent="." instance=ExtResource("3_1phtg")]
 
 [connection signal="area_entered" from="DamageArea" to="." method="OnDamage"]
 [connection signal="area_entered" from="GrazeArea" to="." method="OnGraze"]

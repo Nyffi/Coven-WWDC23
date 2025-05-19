@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://t01oqwffd226"]
+
+[ext_resource type="Script" uid="uid://gl0nfc40ai0g" path="res://Scenes/Danmaku.cs" id="1_bawnc"]
+
+[node name="Danmaku" type="Node2D"]
+script = ExtResource("1_bawnc")

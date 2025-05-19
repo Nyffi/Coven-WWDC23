@@ -4,7 +4,9 @@ namespace CovenWWDC23Port.Scenes;
 
 public partial class Player : Node2D
 {
-
+	[Export] private Danmaku _main;
+	[Export] private Danmaku _second;
+	
 	private bool _invulnerable; 
 	private void UpdatePlayerPosition()
 	{
@@ -27,6 +29,7 @@ public partial class Player : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_main.SelectPreMadeBulletPattern("playerA");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
