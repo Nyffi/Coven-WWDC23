@@ -55,25 +55,25 @@ public partial class Danmaku : Node2D
 
 	public void updateConfigData(BulletSpawnerConfig config)
 	{
-		// this._ownerIsPlayer = config.OwnerIsPlayer;
+		this._ownerIsPlayer = this.GetParent().Name != "Player";
 		this._texture = config.Texture;
 		this._spriteSpin = config.SpriteSpin;
-		// this._patternArrays = config.PatternArrays;
-		// this._bulletsPerArray = config.BulletsPerArray;
-		// this._spreadBetweenArray = config.SpreadBetweenArray;
-		// this._spreadWithinArray = config.SpreadWithinArray;
-		// this._startAngle = config.StartAngle;
-		// this._spinRate = config.SpinRate;
-		// this._spinModificator = config.SpinModificator;
-		// this._invertSpin = config.InvertSpin;
-		// this._maxSpinRate = config.MaxSpinRate;
-		// this._fireRate = config.FireRate;
-		// this._objectWidth = config.ObjectWidth;
-		// this._objectHeight = config.ObjectHeight;
-		// this._bulletSpeed = config.BulletSpeed;
-		// this._bulletAcceleration = config.BulletAcceleration;
-		// this._bulletCurve = config.BulletCurve;
-		// this._bulletTtl = config.BulletTtl;
+		this._patternArrays = config.PatternArrays;
+		this._bulletsPerArray = config.BulletsPerArray;
+		this._spreadBetweenArray = config.SpreadBetweenArray;
+		this._spreadWithinArray = config.SpreadWithinArray;
+		this._startAngle = config.StartAngle;
+		this._spinRate = config.SpinRate;
+		this._spinModificator = config.SpinModificator;
+		this._invertSpin = config.InvertSpin;
+		this._maxSpinRate = config.MaxSpinRate;
+		this._fireRate = config.FireRate;
+		this._objectWidth = config.ObjectWidth;
+		this._objectHeight = config.ObjectHeight;
+		this._bulletSpeed = config.BulletSpeed;
+		this._bulletAcceleration = config.BulletAcceleration;
+		this._bulletCurve = config.BulletCurve;
+		this._bulletTtl = config.BulletTtl;
 	}
 
 	public BulletSpawnerConfig fetchConfigData()

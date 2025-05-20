@@ -65,6 +65,22 @@ public class BulletSpawnerConfig
                 break;
         }
         Enum.TryParse(data.SpriteSpin, out this.SpriteSpin);
+        // ownerIsPlayer is defined on Danmaku.cs
+        this.PatternArrays = data.PatternArrays;
+        this.BulletsPerArray = data.BulletsPerArray;
+        this.SpreadBetweenArray = data.SpreadBetweenArray;
+        this.SpreadWithinArray = data.SpreadWithinArray;
+        this.StartAngle = data.StartAngle;
+        this.SpinRate = data.SpinRate;
+        this.SpinModificator = data.SpinModificator;
+        this.MaxSpinRate = data.MaxSpinRate;
+        this.FireRate = data.FireRate;
+        this.ObjectWidth = data.ObjectWidth;
+        this.ObjectHeight = data.ObjectHeight;
+        this.BulletSpeed = data.BulletSpeed;
+        this.BulletAcceleration = data.BulletAcceleration;
+        this.BulletCurve = data.BulletCurve;
+        this.BulletTtl = data.BulletTTL;
         
         GD.Print(this.SpriteSpin);
     }

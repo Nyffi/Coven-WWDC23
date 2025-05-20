@@ -7,6 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja4e4"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("_main", "_second")]
+z_index = 1
 script = ExtResource("1_2j84s")
 _main = NodePath("Main Danmaku")
 _second = NodePath("Sub Danmaku")
@@ -17,7 +18,7 @@ texture = ExtResource("1_122ew")
 
 [node name="DamageArea" type="Area2D" parent="."]
 scale = Vector2(0.5, 0.5)
-collision_mask = 4
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_ja4e4")
@@ -25,14 +26,16 @@ debug_color = Color(0.803922, 0, 0.141176, 0.772549)
 
 [node name="GrazeArea" type="Area2D" parent="."]
 scale = Vector2(3, 3)
-collision_mask = 4
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeArea"]
 shape = SubResource("CircleShape2D_ja4e4")
 
 [node name="Main Danmaku" parent="." instance=ExtResource("3_1phtg")]
+z_index = -1
 
 [node name="Sub Danmaku" parent="." instance=ExtResource("3_1phtg")]
+z_index = -1
 
 [connection signal="area_entered" from="DamageArea" to="." method="OnDamage"]
 [connection signal="area_entered" from="GrazeArea" to="." method="OnGraze"]

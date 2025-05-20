@@ -51,13 +51,13 @@ public class DanmakuData
     public float ObjectHeight;
 
     [JsonPropertyName("bulletSpeed")]
-    public double BulletSpeed;
+    public float BulletSpeed;
 
     [JsonPropertyName("bulletAcceleration")]
-    public double BulletAcceleration;
+    public float BulletAcceleration;
 
     [JsonPropertyName("bulletCurve")]
-    public double BulletCurve;
+    public float BulletCurve;
 
     [JsonPropertyName("bulletTTL")]
     public int BulletTTL;
