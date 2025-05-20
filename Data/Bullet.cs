@@ -58,12 +58,14 @@ public partial class Bullet : Sprite2D
 			Name = $"pBullet({Guid.NewGuid().ToString()})";
 			_hitbox.CollisionLayer = 2;
 			_hitbox.CollisionMask = 4;
+			this.ZIndex = 1;
 		}
 		else
 		{
 			Name = $"eBullet({Guid.NewGuid().ToString()})";
 			_hitbox.CollisionLayer = 8;
 			_hitbox.CollisionMask = 1;
+			this.ZIndex = 3;
 		}
 	}
 

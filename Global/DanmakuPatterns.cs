@@ -11,7 +11,7 @@ namespace CovenWWDC23Port.Global;
 public partial class DanmakuPatterns : Node
 {
 	private Json _patterns = ResourceLoader.Load<Json>("res://Data/Patterns.json");
-	private Dictionary<string, DanmakuData> PatternData;
+	private Dictionary<string, DanmakuData> _patternData;
 	//private static DanmakuPatterns _instance;
 
 	// public static DanmakuPatterns Instance
@@ -45,13 +45,13 @@ public partial class DanmakuPatterns : Node
 			GD.Print(e.Message);
 		}
 		
-		PatternData = data;
+		_patternData = data;
 		GD.Print("DanmakuPatterns loaded");
 	}
 
 	// Fetch a specific key entry from the data dictionary
 	public DanmakuData FetchDanmakuData(string key)
 	{
-		return PatternData[key];
+		return _patternData[key];
 	}
 }

@@ -55,7 +55,7 @@ public partial class Danmaku : Node2D
 
 	public void updateConfigData(BulletSpawnerConfig config)
 	{
-		this._ownerIsPlayer = this.GetParent().Name != "Player";
+		this._ownerIsPlayer = this.GetParent().Name == "Player";
 		this._texture = config.Texture;
 		this._spriteSpin = config.SpriteSpin;
 		this._patternArrays = config.PatternArrays;

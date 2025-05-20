@@ -17,6 +17,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_122ew")
 
 [node name="DamageArea" type="Area2D" parent="."]
+z_index = 4
 scale = Vector2(0.5, 0.5)
 collision_mask = 12
 
@@ -32,10 +33,8 @@ collision_mask = 12
 shape = SubResource("CircleShape2D_ja4e4")
 
 [node name="Main Danmaku" parent="." instance=ExtResource("3_1phtg")]
-z_index = -1
 
 [node name="Sub Danmaku" parent="." instance=ExtResource("3_1phtg")]
-z_index = -1
 
 [connection signal="area_entered" from="DamageArea" to="." method="OnDamage"]
 [connection signal="area_entered" from="GrazeArea" to="." method="OnGraze"]

@@ -29,6 +29,8 @@ public partial class Player : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// GetNode<CanvasLayer>("player_layer");
+		this.ZIndex = 2;
 		_main.SelectPreMadeBulletPattern("playerA");
 	}
 
